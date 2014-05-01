@@ -331,7 +331,21 @@ var EasyPieChart = function(el, opts) {
 		options.animate.enabled = false;
 		return this;
 	};
+	
+	/**
+	 * Update the value of the chart
+	 * @return {object}          Instance of the plugin for method chaining
+	 */
 
+	this.refresh = function() {
+		if (options.animate.enabled) {
+			this.renderer.animate(0, currentValue);
+		} else {
+			this.renderer.draw(currentValue);
+		}
+		return this;
+	}.bind(this);
+	
 	/**
 	 * Enable animation
 	 * @return {object} Instance of the plugin for method chaining
